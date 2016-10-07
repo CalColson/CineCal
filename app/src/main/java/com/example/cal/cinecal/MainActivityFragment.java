@@ -1,5 +1,6 @@
 package com.example.cal.cinecal;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -10,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -46,6 +48,25 @@ public class MainActivityFragment extends Fragment {
 
         ListView listView = (ListView) rootView.findViewById(R.id.listview_movies);
         listView.setAdapter(mMovieAdapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                MovieInfo movie = mMovieAdapter.getItem(position);
+                Intent detailIntent = new Intent(getActivity(), DetailActivity.class);
+
+                final String TITLE_KEY = "title";
+                final String OVERVIEW_KEY = "overview";
+                final String RELEASE_DATE_KEY = "date";
+                final String POSTER_KEY = "poster";
+
+                detailIntent.putExtra(TITLE_KEY, movie.title);
+                detailIntent.putExtra(OVERVIEW_KEY, movie.overview);
+                detailIntent.putExtra(RELEASE_DATE_KEY, movie.releaseDate);
+                detailIntent.putExtra(POSTER_KEY, movie.posterPath);
+
+                startActivity(detailIntent);
+            }
+        });
 
 
 
