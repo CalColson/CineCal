@@ -11,8 +11,10 @@ import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity {
 
-    //Test comment 1
-    //Test comment 3
+    //Test comment 1 ccc
+    //Test comment 3 #gitignore
+    //Test comment 4 //#gitignore
+    //Test comment 5
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
